@@ -1,4 +1,8 @@
 #folders
 /ven
 /.idea
+/data
+
+#files
+run.sh
 
