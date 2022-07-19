@@ -6,5 +6,3 @@ DB_HOST = getenv("DB_HOST")
 DB_USER_NAME = getenv("DB_USER_NAME")
 DB_USER_PWD = getenv("DB_USER_PWD")
 DB_DATABASE_NAME = getenv("DB_DATABASE_NAME")
-
-PATH_TO_DATA = getenv("PATH_TO_DATA")
