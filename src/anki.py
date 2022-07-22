@@ -14,13 +14,17 @@ class Card:
         self.front_image_name = front_image_name
         self.back_image_name = back_image_name
 
-
-def add_folder(user_id, deck_path):
-    os.makedirs(os.path.join(cfg.PATH_TO_DATA, str(user_id), *deck_path.split(".")), exist_ok=True)
+def is_deck(user_id, deck_path):
+    for _ in cursor.execute("SELECT deck_id FROM decks WHERE user_id=? AND name=?", (user_id, deck_path)):
+        return True
+    return False
 
 def get_deck_id(user_id, deck_path):
     cursor.execute("SELECT deck_id FROM decks WHERE user_id=? AND name=?", (user_id, deck_path))
     return next(cursor)[0]
+
+def add_folder(user_id, deck_path):
+    os.makedirs(os.path.join(cfg.PATH_TO_DATA, str(user_id), *deck_path.split(".")), exist_ok=True)
 
 def make_folder_as_deck(user_id, deck_path):
     cursor.execute("INSERT INTO decks (user_id, name) VALUES (?, ?)", (user_id, deck_path))
@@ -47,7 +51,7 @@ def make_deck_as_folder(user_id, deck_path):
             rmtree(inner)
 
 def remove_folder(user_id, folder_name):
-    pass
+    path = os.path.join(cfg.PATH_TO_DATA, str(user_id), )
 
 def add_card_to_deck(user_id, deck_name, card):
     pass
